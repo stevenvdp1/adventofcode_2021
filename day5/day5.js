@@ -1,3 +1,5 @@
+const time = new Date()
+
 const fs = require('fs');
 const path = require('path');
 
@@ -57,3 +59,4 @@ const getDiagram = (data) => {
 
 console.log('Answer1:', getDiagramNoDiagonal(data).flat().filter(x => x > 1).length)
 console.log('Answer2:', getDiagram(data).flat().filter(x => x > 1).length)
+console.log('Time (ms):', new Date() - time)

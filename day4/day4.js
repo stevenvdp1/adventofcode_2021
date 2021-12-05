@@ -1,3 +1,5 @@
+const time = new Date()
+
 const fs = require('fs');
 const path = require('path');
 
@@ -74,3 +76,5 @@ const findLosingCard = (data) => {
 
 console.log('Answer1: ',findWinningCard([...data]));
 console.log('Answer2: ',findLosingCard([...data]));
+
+console.log('Time (ms):', new Date() - time)

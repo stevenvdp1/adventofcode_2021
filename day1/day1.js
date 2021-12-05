@@ -1,3 +1,5 @@
+const time = new Date()
+
 const fs = require('fs');
 const path = require('path');
 
@@ -20,3 +22,4 @@ const numberOfLargerMeasurements = (array) => {
 }
 console.log(`Answer1: ${numberOfLargerMeasurements(data)}`)
 console.log(`Answer2: ${numberOfLargerMeasurements(windowOfMeasurements(data))}`)
+console.log('Time (ms):', new Date() - time)

@@ -1,3 +1,5 @@
+const time = new Date()
+
 const fs = require('fs');
 const path = require('path');
 
@@ -36,3 +38,4 @@ const answer2 = (data) => {
 
 console.log(answer1(data))
 console.log(answer2(data))
+console.log('Time (ms):', new Date() - time)

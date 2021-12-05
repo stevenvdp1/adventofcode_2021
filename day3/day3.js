@@ -1,3 +1,5 @@
+const time = new Date()
+
 const fs = require('fs');
 const path = require('path');
 
@@ -69,49 +71,4 @@ const lifeSupportRate = (data) => {
 console.log(powerConsumption(data));
 console.log(lifeSupportRate(data));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const getBinaryGamma = (data) =>{
-//     let gamma = Array(12).fill(0);
-//     data.split('').forEach((char,i) => {
-//         if(Number(char)===0)gamma[i%12]++;
-        
-//     });
-//     let string = '';
-//     gamma.forEach(g=>{
-//         if(g>data.length/12/2)string+='0';
-//         else string += '1'
-//     })
-//     return string
-// }
-
-
-
-// const answer1 = (data) =>{
-//     let gamma = getBinaryGamma(data);
-//     console.log(gamma)
-//     let gammaDec = binaryToDecimal(gamma);
-
-//     console.log(gammaDec)
-
-//     let epsilonDec = binaryToDecimal(binaryComplement(gamma));
-
-
-//     return gammaDec*epsilonDec;
-// }
-// console.log(answer1(data));
+console.log('Time (ms):', new Date() - time)
