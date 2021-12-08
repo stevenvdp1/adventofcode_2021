@@ -1,4 +1,4 @@
-const time = new Date()
+console.time('totalTime')
 
 const fs = require('fs');
 const path = require('path');
@@ -71,4 +71,4 @@ const lifeSupportRate = (data) => {
 console.log(powerConsumption(data));
 console.log(lifeSupportRate(data));
 
-console.log('Time (ms):', new Date() - time)
+console.timeEnd('totalTime')

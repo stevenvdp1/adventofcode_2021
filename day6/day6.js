@@ -1,4 +1,4 @@
-const time = new Date()
+console.time('totalTime')
 
 const fs = require('fs');
 const path = require('path');
@@ -17,4 +17,4 @@ const fishesAfterNDays = (populationByAge, days) => {
 
 console.log('Answer1:', fishesAfterNDays([...populationByAge], 80))
 console.log('Answer2:', fishesAfterNDays([...populationByAge], 256))
-console.log('Time (ms):', new Date() - time)
+console.timeEnd('totalTime')

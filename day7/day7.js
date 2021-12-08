@@ -1,4 +1,4 @@
-const time = new Date()
+console.time('totalTime')
 
 const fs = require('fs');
 const path = require('path');
@@ -32,4 +32,4 @@ const sumRange = (number) =>{
 }
 console.log(usedFuel([...data]))
 console.log(usedFuel2([...data]))
-console.log('Time (ms):', new Date() - time)
+console.timeEnd('totalTime')
