@@ -1,55 +1,38 @@
 console.time('totalTime')
 const fs = require('fs');
 const path = require('path');
-const data = fs.readFileSync(path.join(__dirname, 'input.txt'), 'utf8').split('\r\n');
-
+const data = fs.readFileSync(path.join(__dirname, 'input.txt'), 'utf8').split('\r\n').map(line => line.split(''));
 
 const pairs = ['{}', '<>', '[]', '()']
-const closingTags = ['}', '>', ']', ')']
+const closingTags = { '}': 1197, '>': 25137, ']': 57, ')': 3 }
+const openingTags = { '{': 3, '<': 4, '[': 2, '(': 1 }
 
-const getIllegalChars = (data) => {
-    let illegalChars = [];
-    data.forEach(line => {
-        while (pairs.some(p => line.includes(p))) {
-            pairs.forEach(p => line = line.replace(p, ''))
+let corruptedScore = 0;
+let incompleteScores = []
+
+data.forEach(line => {
+    let stack = []
+    while (line.length > 0) {
+        let char = line.shift()
+        if (Object.keys(openingTags).includes(char)) stack.push(char)
+        else if (pairs.includes(stack[stack.length - 1] + char)) stack.pop()
+        else {
+            corruptedScore += closingTags[char]
+            break;
         }
-        illegalChars.push(line.split('').find(c => closingTags.includes(c)))
-    })
-    return illegalChars.filter(c=>c!==undefined)
-}
-
-const getScore = (chars) => {
-    let sum = 0
-    sum += chars.filter(c => c === ')').length * 3
-    sum += chars.filter(c => c === ']').length * 57
-    sum += chars.filter(c => c === '}').length * 1197
-    sum += chars.filter(c => c === '>').length * 25137
-    return sum
-}
-
-const incompleteLinesScore = (data)=>{
-    return data.map(line=>{
-        while (pairs.some(p => line.includes(p))) {
-            pairs.forEach(p => line = line.replace(p, ''))
-        }
-        line = line.split('')
-        if(!line.some(c=>closingTags.includes(c))){
-            let sum =0
-            while(line.length>0){
-                let char = line.pop()
-                sum = sum*5
-                if(char==='(')sum+=1
-                else if(char==='[')sum+=2
-                else if(char==='{')sum+=3
-                else if(char==='<')sum+=4
+        if (line.length === 0){
+            let score = 0
+            while(stack.length > 0){
+                let char = stack.pop()
+                score = score * 5
+                score += openingTags[char]
             }
-            return sum
+            incompleteScores.push(score)
         }
-    }).filter(line=>line!==undefined)
-}
+    }
+})
 
-const middleScore = (scores) => scores.sort((a,b)=>a-b)[Math.floor(scores.length/2)]
+console.log('Answer1:', corruptedScore)
+console.log('Answer2:', incompleteScores.sort((a, b) => a - b)[Math.floor(incompleteScores.length / 2)])
 
-console.log('Answer1:', getScore(getIllegalChars(data)))
-console.log('Answer2:', middleScore(incompleteLinesScore(data)))
 console.timeEnd('totalTime')
