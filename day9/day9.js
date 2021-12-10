@@ -44,8 +44,6 @@ const adjacent = (x, y, data) => {
     return adjacent
 }
 
-
-
 console.log('Answer1:', lowPoints(data).reduce((a, b) => a + 1 + data[b.x][b.y], 0));
 console.log('Answer2:', basins(data).sort((a, b) => b - a).slice(0,3).reduce((a, b) => a * b))
 
