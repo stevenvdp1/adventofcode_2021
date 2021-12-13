@@ -22,10 +22,11 @@ const printTable = (coordinates) => {
 }
 
 const removeDuplicates = (coordinates) => {
-    return coordinates.reduce((acc, curr) => {
-        if (acc.some(a => a[0] === curr[0] && a[1] === curr[1])) return acc
-        return [...acc, curr]
-    }, [])
+    let coords = coordinates.reduce((acc, curr) => {
+        if (acc.has(curr[0]+'-'+curr[1])) return acc
+        return acc.add(curr[0]+'-'+curr[1])
+    }, new Set())
+    return coords
 }
 
 const doAllFolds = (coordinates, folds) => {
@@ -47,10 +48,10 @@ const doFold = (coordinates, fold) => {
             else if (coordinate[1] > value) return [coordinate[0], Math.abs(coordinate[1] - (value * 2))];
         }
     })
-    return removeDuplicates(newCoordinates)
+    return newCoordinates
 }
 
-console.log('Answer1:', doFold([...coordinates], folds[0]).length)
+console.log('Answer1:', removeDuplicates(doFold([...coordinates], folds[0])).size)
 printTable(doAllFolds(coordinates, folds));
 
 console.timeEnd('totalTime')
