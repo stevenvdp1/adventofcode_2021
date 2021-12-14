@@ -68,7 +68,7 @@ const lifeSupportRate = (data) => {
     return oxygenRate(data) * co2ScrubberRate(data);
 }
 
-console.log(powerConsumption(data));
-console.log(lifeSupportRate(data));
+console.log('Answer1:',powerConsumption(data));
+console.log('Answer2:',lifeSupportRate(data));
 
 console.timeEnd('totalTime')

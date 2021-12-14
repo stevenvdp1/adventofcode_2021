@@ -33,9 +33,9 @@ const answer2 = (data) => {
         else if (direction === 'up') aim -= parseInt(distance)
         else if (direction === 'down') aim += parseInt(distance)
     }
-    return x*y
+    return x * y
 }
 
-console.log(answer1(data))
-console.log(answer2(data))
+console.log('Answer1:', answer1(data))
+console.log('Answer2:', answer2(data))
 console.timeEnd('totalTime')
