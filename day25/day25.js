@@ -46,4 +46,5 @@ while (true) {
     if (!result.moved) break
     board = result.board
 }
-console.log(count)
+console.log('Answer1:', count)
+console.timeEnd('totalTime')
